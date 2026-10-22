@@ -1,1 +1,87 @@
 
+sudo apt-get update && sudo apt-get install -y wget apt-transport-https software-properties-common && wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb && sudo dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && sudo apt-get update && sudo apt-get install -y powershell
+
+pwsh
+
+Get-Date
+
+Get-Command -Verb Get -Noun *Location*
+
+
+Get-Help Get-Location
+
+Get-ChildItem
+
+# Create target folder
+New-Item -ItemType Directory -Name "CyberSecurity"
+
+# Navigate into target folder
+Set-Location -Path "CyberSecurity"
+
+# Verify new location
+Get-Location
+
+
+# Scenario: Setting up a project folder layout in one execution
+New-Item -ItemType Directory -Name "ProjectAlpha"
+New-Item -ItemType File -Name "ProjectAlpha/notes.txt"
+
+Copy-Item -Path "ProjectAlpha/notes.txt" -Destination "ProjectAlpha/notes_backup.txt"
+
+# Verify both files exist
+Get-ChildItem -Path "ProjectAlpha"
+
+Rename-Item -Path "ProjectAlpha/notes_backup.txt" -NewName "notes_v1.txt"
+
+Remove-Item -Path "ProjectAlpha/notes_v1.txt"
+
+Remove-Item -Path "ProjectAlpha" -Recurse -Force
+
+# Create a log file with initial data
+Set-Content -Path "system.log" -Value "2026-10-22 15:20:00 [INFO] System initialized successfully."
+
+# Append a second line without overwriting the first
+Add-Content -Path "system.log" -Value "2026-10-22 15:21:05 [ERROR] Disk usage exceeded 85%."
+
+# Read full file contents
+Get-Content -Path "system.log"
+
+# Setup dummy files
+Set-Content -Path "small.txt" -Value "Hello"
+Set-Content -Path "large.txt" -Value "This is a much longer sentence containing significantly more text bytes."
+
+# Pipeline Operation: Get files -> Pass to Sort-Object
+Get-ChildItem -File | Sort-Object -Property Length -Descending
+
+Get-ChildItem -File | Where-Object -Property Length -gt 10
+
+
+Task Set 1: Mid-Day Checkpoint
+
+
+Focus: Shell syntax, path resolution, and directory navigation
+Environment: Killercoda Terminal (pwsh)
+
+Scenario
+You are setting up the folder structure for a new corporate website project called WebProject. You need to create the initial workspace and verify your current position in the file system using exact PowerShell commands.
+Instructions & Tasks
+
+1.	Find Your Bearings
+Check your current directory and save the full path into a variable or note it down.
+2.	Build the Root Directory
+Create a main directory named WebProject in your current path.
+3.	Navigate & Expand
+Move inside the WebProject directory and create three separate subdirectories:
+o	HTML
+o	CSS
+o	Assets
+4.	Relative Path Challenge
+o	Navigate into the Assets subfolder.
+o	From inside Assets, create a subfolder named Images.
+o	Without using absolute paths, step back up to the WebProject main directory.
+5.	Verification
+List all contents of WebProject (including hidden attributes or subfolders) to confirm your structure matches the blueprint.
+
+
+
+
