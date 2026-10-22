@@ -66,6 +66,7 @@ Scenario
 You are setting up the folder structure for a new corporate website project called WebProject. You need to create the initial workspace and verify your current position in the file system using exact PowerShell commands.
 Instructions & Tasks
 
+********************************
 1.	Find Your Bearings
 Check your current directory and save the full path into a variable or note it down.
 2.	Build the Root Directory
@@ -81,6 +82,110 @@ o	From inside Assets, create a subfolder named Images.
 o	Without using absolute paths, step back up to the WebProject main directory.
 5.	Verification
 List all contents of WebProject (including hidden attributes or subfolders) to confirm your structure matches the blueprint.
+********************************
+
+# Step 1 & 2: Create folder hierarchy
+New-Item -ItemType Directory -Name "Incident_20261022"
+New-Item -ItemType Directory -Name "Incident_20261022/Logs"
+New-Item -ItemType Directory -Name "Incident_20261022/Quarantine"
+
+# Step 3: Write network log evidence
+Set-Content -Path "Incident_20261022/Logs/network.log" -Value "ALERT: Suspicious outbound connection to 192.168.1.50"
+
+# Step 4: Copy and rename evidence file
+Copy-Item -Path "Incident_20261022/Logs/network.log" -Destination "Incident_20261022/Quarantine/network.log"
+Rename-Item -Path "Incident_20261022/Quarantine/network.log" -NewName "evidence_01.bak"
+
+# Step 5: Read evidence content
+Get-Content -Path "Incident_20261022/Quarantine/evidence_01.bak"
+
+# Step 6: Verify recursive directory state
+Get-ChildItem -Path "Incident_20261022" -Recurse
+
+
+
+
+# Create test environment
+New-Item -ItemType Directory -Name "PatternTest"
+Set-Location -Path "PatternTest"
+New-Item -ItemType File -Path "report1.txt", "report20.txt", "notes.log", "data.json"
+
+# Search for all .txt files
+Get-ChildItem -Path *.txt
+
+
+
+
+# Add dummy content
+Set-Content -Path "server1.log" -Value "[INFO] Service started"
+Set-Content -Path "server2.log" -Value "[ERROR] Memory failure detected"
+
+# Search across all log files for the word "ERROR"
+Select-String -Path *.log -Pattern "ERROR"
+
+
+
+# Get the current logged-in user
+$env:USER
+
+# Get the default home directory path
+$env:HOME
+
+
+Get-ChildItem -Path env:
+
+
+
+Get-Process | Sort-Object -Property WorkingSet -Descending | Select-Object -First 3
+
+
+
+# Create a short alias 'glog' for Get-Content
+New-Alias -Name "glog" -Value "Get-Content"
+
+# Test the custom alias
+Set-Content -Path "test.txt" -Value "Custom alias works!"
+glog -Path "test.txt"
+
+
+**********************************
+
+Task Set 2: Final Practical Checkpoint
+
+
+Focus: File management, content manipulation, pipeline filtering, and cleanup
+Environment: Killercoda Terminal (pwsh)
+Scenario
+An audit revealed that server log files are scattered in an untidy format. You are tasked with organizing log files, extracting critical errors, backing up data, and clearing out old files.
+Instructions & Tasks
+
+1.	Environment Setup
+Create a folder named ServerAudit and step into it. Inside ServerAudit, create two files:
+o	app.log containing text: "2026-10-22 [INFO] Server started successfully"
+o	error.log containing text: "2026-10-22 [ERROR] Database connection lost"
+2.	Reading & Appending Content
+o	Read and display the contents of error.log on screen.
+o	Append a second line to error.log with the text: "2026-10-22 [CRITICAL] Memory limit reached".
+3.	Backup & Renaming
+o	Copy error.log into a new subfolder named Backups.
+o	Rename the copied file inside Backups to error_backup_v1.txt.
+4.	Pipeline Filtering
+o	Run a single command pipeline that retrieves all .log files in the ServerAudit folder and sorts them by size (Length) in descending order.
+5.	Safe Cleanup
+o	Delete the original app.log file from the main ServerAudit directory.
+o	Verify the final folder state recursively.
+
+
+
+
+3 Task Instructions
+
+1.	System Discovery: Display the current OS user using $env:USER and display the contents of the PATH environment variable using $env:PATH.
+2.	Wildcard Search: In your working directory, search recursively for all files that end with .log using Get-ChildItem.
+3.	Content Search: Search inside all .log files for any line containing the word "ALERT" using Select-String.
+4.	Alias Lookup: Find the true PowerShell cmdlet name behind the alias copy using Get-Alias.
+
+
 
 
 
