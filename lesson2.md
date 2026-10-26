@@ -3,7 +3,7 @@ git --version
 # If not installed
 sudo apt-get update && sudo apt-get install -y git
 
-PowerShell
+
 # Set global username
 git config --global user.name "Student Developer"
 
@@ -16,7 +16,7 @@ git config --global init.defaultBranch main
 # Verify settings list
 git config --list
 
-PowerShell
+
 # Create a new project directory
 New-Item -ItemType Directory -Name "GitDemo"
 Set-Location -Path "GitDemo"
