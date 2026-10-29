@@ -102,7 +102,7 @@ Tasks:
 1.	Create a folder named ServerConfig and initialize it as a local Git repository.
 2.	Create a file settings.conf containing text "PORT=8080". Stage and commit it with message "Add default server port".
 3.	Rename your default branch to main.
-4.	Add a remote alias named origin pointing to [https://github.com/example-org/server-config.git](https://github.com/example-org/server-config.git).
+4.	Add a remote alias named origin pointing to https://github.com/octocat/Spoon-Knife.git .
 5.	Run git remote -v to confirm your remote endpoints.
 6.	Run git log --oneline to verify local commit history before pushing.
 
@@ -112,7 +112,7 @@ Scenario
 You joined a team building an API gateway called ApiGateway. You need to clone the repository, create a feature branch for a rate-limiting feature, commit your scaffold, push the branch upstream, and verify isolation on main.
 
 Tasks:
-1.	Clone the repository from [https://github.com/example-org/api-gateway.git](https://github.com/example-org/api-gateway.git) into a local directory named ApiGateway.
+1.	Clone the repository from (https://github.com/octocat/Spoon-Knife.git) into a local directory named ApiGateway.
 2.	Navigate inside ApiGateway and create a feature branch named feature/rate-limiter.
 3.	Create a file limiter.py containing text "# Rate limiting logic".
 4.	Stage and commit limiter.py with message "Add rate limiter scaffold".
