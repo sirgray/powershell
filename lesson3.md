@@ -15,6 +15,12 @@ Set-Content -Path "readme.md" -Value "# Remote Demonstration Project"
 git add readme.md
 git commit -m "Initial local commit"
 
+!!!!
+github account
+create private repository (RemoteDemo)
+
+!!!!
+
 
 git remote add origin https://github.com/<sirgray>/RemoteDemo.git
 
